@@ -21,7 +21,7 @@ const useStyles = createUseStyles({
 })
 
 
-function App() {
+const App: React.FC = () =>{
   const classes = useStyles()
   return (
     <div className={classes.root}>
