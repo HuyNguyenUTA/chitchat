@@ -3,10 +3,10 @@ import React from 'react';
 type Props = {
 
 }
-const Textbox: React.FC <Props> = () => {
+const Input: React.FC <Props> = () => {
     return (
         <div>Hello</div>
     );
 }
  
-export default Textbox;
+export default Input;
