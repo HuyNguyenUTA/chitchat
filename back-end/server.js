@@ -1,13 +1,21 @@
-const express = require("express");
-const { createServer } = require("http");
-const { Server } = require("socket.io");
-
+const express = require('express');
 const app = express();
-const httpServer = createServer(app);
-const io = new Server(httpServer, { /* options */ });
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
-io.on("connection", (socket) => {
-  res.send('Hello')
+app.set('view engine', 'html')
+
+app.get('/Users/huynguyen/MyWork/Coding/chitchat/front-end/public/index', (req, res) => {
+  res.render('index');
 });
 
-httpServer.listen(3000);
+server.listen(3001, () => {
+  console.log("Server running...");
+});
+
+io.on("connection", (socket) => {
+  console.log("User connected: " + socket.id);
+  socket.on("message", (data) => {
+    console.log(data);
+  });
+});

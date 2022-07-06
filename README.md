@@ -1,3 +1,3 @@
 # chitchat
 
-Realtime Chat App using Typescript, ReactJS, SocketIO, NextJS
+Realtime Chat App using Typescript, ReactJS, SocketIO, Nodejs, Express
