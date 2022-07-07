@@ -1,10 +1,13 @@
 import React from 'react';
 
 type Props = {
-    state: any;
-    setState: any;
+    name: string;
+    id: number;
+    setName: React.Dispatch<React.SetStateAction<string>>;
+    setID: React.Dispatch<React.SetStateAction<number>>
 }
-const Input: React.FC <Props> = () => {
+const Input: React.FC <Props> = ({name, setName, id, setID}) => {
+
     return (
         <div></div>
     );
