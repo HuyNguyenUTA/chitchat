@@ -3,24 +3,26 @@ import './App.css';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
-import {createUseStyles} from 'react-jss';
+import { createUseStyles } from 'react-jss';
 import io from 'socket.io-client';
-import Room from './components/Room';
-import { Outlet, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const useStyles = createUseStyles({
   root: {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: "10px"
+    justifyContent: "center",
+    gap: "10px",
+    height: "100%",
+    backgroundColor: "#F5EDDC"
   },
   appName: {
     color: "#A27B5C"
   }
 })
 
-const socket = io('http://localhost:3001', { transports : ['websocket'] })
+const socket = io('http://localhost:4000', { transports : ['websocket'] })
 
 socket.on("connection", () => {})
 

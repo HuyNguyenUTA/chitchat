@@ -9,13 +9,13 @@ app.get('/Users/huynguyen/MyWork/Coding/chitchat/front-end/public/index', (req, 
   res.render('index');
 });
 
-server.listen(3001, () => {
+server.listen(4000, () => {
   console.log("Server running...");
 });
 
 io.on("connection", (socket) => {
   console.log("User connected: " + socket.id);
   socket.on("message", (data) => {
-    console.log(data);
+    socket.broadcast.emit('message', data)
   });
 });

@@ -1,7 +1,4 @@
-html {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+html, body{
   height: 100%;
-  background-color: #DCD7C9;
+  margin: 0px;
 }
