@@ -16,6 +16,6 @@ server.listen(4000, () => {
 io.on("connection", (socket) => {
   console.log("User connected: " + socket.id);
   socket.on("message", (data) => {
-    socket.broadcast.emit('message', data)
+    console.log(data)
   });
 });
