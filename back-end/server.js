@@ -5,17 +5,24 @@ const io = require('socket.io')(server);
 
 app.set('view engine', 'html')
 
-app.get('/Users/huynguyen/MyWork/Coding/chitchat/front-end/public/index', (req, res) => {
-  res.render('index');
-});
 
 server.listen(4000, () => {
-  console.log("Server running...");
+  console.log(`Server running...`);
 });
 
 io.on("connection", (socket) => {
-  console.log("User connected: " + socket.id);
-  socket.on("message", (data) => {
-    console.log(data)
+  console.log(`User connected: ${socket.id}`);
+
+  socket.on("join_room", (data) => {
+    socket.join(data);
+    console.log(`User with ID: ${socket.id} joined room: ${data}`);
+  });
+
+  socket.on("send_message", (data) => {
+    console.log(data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`User Disconnected ${socket.id}`);
   });
 });

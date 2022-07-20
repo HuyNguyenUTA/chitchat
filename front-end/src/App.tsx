@@ -4,9 +4,9 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { TextField } from '@mui/material';
 import { createUseStyles } from 'react-jss';
-import io from 'socket.io-client';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
+import { Socket } from 'socket.io-client';
+
 
 const useStyles = createUseStyles({
   root: {
@@ -20,22 +20,26 @@ const useStyles = createUseStyles({
   },
   appName: {
     color: "#A27B5C"
-  }
+  },
 })
 
-const socket = io('http://localhost:4000', {transports : ['websocket']})
+interface Collection {
+  socket: Socket;
+}
 
-socket.on("connection", () => {})
+const App: React.FC<Collection> = ({socket}) => {
+  const classes = useStyles();
+  const [name, setName] = useState("");
+  const [room, setRoom] = useState("");
 
-const App: React.FC = () => {
-  const classes = useStyles()
-  const [name, setName] = useState<string>("");
-  const [id, setID] = useState<number>();
-  
-  
+  const joinRoom = () => {
+    if (name !== "" && room !== "") {
+      socket.emit("join_room", room)
+    }
+  }
 
   console.log(name)
-  console.log(id)
+  console.log(room)
   
   return (
     <div className={classes.root}>
@@ -45,20 +49,25 @@ const App: React.FC = () => {
         id="Name" 
         label="Name" 
         variant="outlined" 
-        onChange={(e) => {
-          setName(e.target.value);
+        onChange={(event) => {
+          setName(event.target.value);
         }}
       />
       <TextField
-        id="id" 
-        label="id" 
+        id="room" 
+        label="Room ID" 
         variant="outlined" 
-        onChange={(e) => {
-          setID(parseInt(e.target.value));
+        onChange={(event) => {
+          setRoom(event.target.value);
         }}
       />
 
-      <Button variant="contained" component={Link} to='/room'>Enter</Button>
+        <Link to={`/room?name=${name}&room=${room}`}>
+          <Button variant="contained" onClick={joinRoom} >
+              Enter
+          </Button>
+        </Link>
+
     </div>
   );
 } 
