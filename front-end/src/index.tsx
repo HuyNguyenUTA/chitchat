@@ -6,8 +6,7 @@ import Room from './components/Room';
 import {
   BrowserRouter,
   Routes,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import io from 'socket.io-client';
 
@@ -21,7 +20,7 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<App socket={socket} />} />
-      <Route path='/room' element={<Room socket={socket}/>} />
+      <Route path='/:id' element={<Room socket={socket}/>} />
     </Routes>
   </BrowserRouter>
 );
