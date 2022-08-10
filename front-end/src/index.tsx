@@ -20,7 +20,7 @@ root.render(
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<App socket={socket} />} />
-      <Route path='/:id' element={<Room socket={socket}/>} />
+      <Route path='/:id' element={<Room socket={socket} name="" room=""/>} />
     </Routes>
   </BrowserRouter>
 );
